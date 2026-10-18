@@ -5,21 +5,17 @@ import { useColorScheme } from "nativewind";
 
 import { NAV_THEME } from "@/lib/theme";
 import { StackHeader } from "expo-router/build/layouts/stack-utils";
-import { Text } from "react-native";
 import "../global.css";
 
 export default function RootLayout() {
   const { colorScheme } = useColorScheme();
-  const scheme = "dark";
+  const scheme = colorScheme ?? "light";
 
   return (
     <ThemeProvider value={NAV_THEME[scheme]}>
-      {/* <StatusBar style={scheme === "dark" ? "light" : "dark"} /> */}
-      <StatusBar style={scheme} />
+      <StatusBar style={scheme === "dark" ? "light" : "dark"} />
       <Stack>
-        <StackHeader asChild>
-          <Text className="p-5 text-xl font-bold dark:text-white">😀 Hello world!</Text>
-        </StackHeader>
+        <StackHeader hidden />
       </Stack>
       <PortalHost />
     </ThemeProvider>

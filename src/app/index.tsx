@@ -1,9 +1,8 @@
+import Furi from "@/components/furigana";
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
-import { useChat } from '@ai-sdk/react';
-import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { ToolLoopAgent } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch';
-import { useState } from "react";
-import { ScrollView, Text, TextInput, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const openrouter = createOpenAICompatible({
@@ -22,17 +21,46 @@ const agent = new ToolLoopAgent({
 });
 
 export default function Index() {
-  const [input, setInput] = useState('');
-  const { messages, error, sendMessage } = useChat({
-    transport: new DirectChatTransport({ agent }),
-    onError: error => console.error(error, 'ERROR'),
-  });
+  // const [input, setInput] = useState('');
+  // const { messages, error, sendMessage } = useChat({
+  //   transport: new DirectChatTransport({ agent }),
+  //   onError: error => console.error(error, 'ERROR'),
+  // });
 
-  if (error) return <Text>{error.message}</Text>;
+  // if (error) return <Text>{error.message}</Text>;
 
   return (
     <SafeAreaView style={{ height: '100%' }}>
-      <View
+      <View className="flex items-center justify-center h-full">
+        <View className="p-8">
+          <Furi
+            segments={[
+              { text: '私', furi: 'わたし' },
+              { text: 'は' },
+              { text: '日本語', furi: 'にほんご' },
+              { text: 'を' },
+              { text: '勉強', furi: 'べんきょう' },
+              { text: 'しています。' },
+              { text: '\n' },
+              { text: '今日', furi: 'きょう' },
+              { text: 'は' },
+              { text: '天気', furi: 'てんき' },
+              { text: 'がいいですね。' },
+            ]}
+            style={{  }}
+            textStyle={{ color: 'white' }}
+            furiStyle={{
+              // fontFamily: '',
+              color: 'white',
+              borderColor: 'red',
+              borderWidth: 0,
+            }}
+            showFuri={true}
+            size={24}
+          />
+        </View>
+      </View>
+      {/* <View
         style={{
           height: "90%",
           display: 'flex',
@@ -69,7 +97,7 @@ export default function Index() {
             autoFocus={true}
           />
         </View>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 }
