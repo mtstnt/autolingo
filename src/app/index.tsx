@@ -1,98 +1,75 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
+import { useChat } from '@ai-sdk/react';
+import { DirectChatTransport, ToolLoopAgent } from 'ai';
+import { fetch as expoFetch } from 'expo/fetch';
+import { useState } from "react";
+import { ScrollView, Text, TextInput, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+const openrouter = createOpenAICompatible({
+  name: 'openrouter',
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.EXPO_PUBLIC_OPENROUTER_API_KEY,
+  fetch: expoFetch as unknown as typeof globalThis.fetch,
+  headers: {
+    'X-OpenRouter-Title': 'rn-app',
   },
 });
+
+const agent = new ToolLoopAgent({
+  model: openrouter('nvidia/nemotron-3.5-lightning:free'),
+  instructions: 'You are a helpful assistant.',
+});
+
+export default function Index() {
+  const [input, setInput] = useState('');
+  const { messages, error, sendMessage } = useChat({
+    transport: new DirectChatTransport({ agent }),
+    onError: error => console.error(error, 'ERROR'),
+  });
+
+  if (error) return <Text>{error.message}</Text>;
+
+  return (
+    <SafeAreaView style={{ height: '100%' }}>
+      <View
+        style={{
+          height: "90%",
+          display: 'flex',
+          flexDirection: 'column',
+          paddingHorizontal: 8,
+        }}
+      >
+        <ScrollView style={{ flex: 1 }}>
+          {messages.map(m => (
+            <View key={m.id} style={{ marginVertical: 8 }}>
+              <View>
+                <Text className="dark:text-white">{m.role}</Text>
+                {m.parts.map((part, i) => {
+                  switch (part.type) {
+                    case 'text':
+                      return <Text className="dark:text-white" key={`${m.id}-${i}`}>{part.text}</Text>;
+                  }
+                })}
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+        <View style={{ marginTop: 8 }}>
+          <TextInput
+            style={{ backgroundColor: 'white', padding: 8 }}
+            placeholder="Say something..."
+            value={input}
+            onChange={e => setInput(e.nativeEvent.text)}
+            onSubmitEditing={e => {
+              e.preventDefault();
+              sendMessage({ text: input });
+              setInput('');
+            }}
+            autoFocus={true}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
