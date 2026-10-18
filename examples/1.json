@@ -1,0 +1,355 @@
+{
+  "translation": "Yesterday, I went to a small café near the station with my friend. We talked about our plans for the weekend while drinking coffee. The café was quiet, so we were able to have a relaxing conversation. After that, we walked home together because the weather was nice.",
+  "chunks": [
+    {
+      "text": "昨日",
+      "reading": [
+        {
+          "text": "昨日",
+          "furi": "きのう"
+        }
+      ],
+      "role": "noun",
+      "meaning": {
+        "in_context": "yesterday",
+        "dictionary": "yesterday"
+      }
+    },
+    {
+      "text": "、",
+      "reading": [
+        {
+          "text": "、"
+        }
+      ],
+      "role": "other"
+    },
+    {
+      "text": "友達と",
+      "reading": [
+        {
+          "text": "友達",
+          "furi": "ともだち"
+        },
+        {
+          "text": "と"
+        }
+      ],
+      "role": "particle",
+      "meaning": {
+        "in_context": "with a friend",
+        "dictionary": "and; with"
+      }
+    },
+    {
+      "text": "駅の近くにある",
+      "reading": [
+        {
+          "text": "駅",
+          "furi": "えき"
+        },
+        {
+          "text": "の"
+        },
+        {
+          "text": "近く",
+          "furi": "ちかく"
+        },
+        {
+          "text": "に"
+        },
+        {
+          "text": "ある"
+        }
+      ],
+      "role": "grammar_phrase",
+      "grammar": {
+        "dictionary_form": "ある",
+        "conjugation": "plain form",
+        "explanation": "The phrase 駅の近くにある modifies the following noun, meaning 'that is located near the station'.",
+        "implication": "It identifies which café is being talked about."
+      }
+    },
+    {
+      "text": "小さなカフェに",
+      "reading": [
+        {
+          "text": "小さな",
+          "furi": "ちいさな"
+        },
+        {
+          "text": "カフェ"
+        },
+        {
+          "text": "に"
+        }
+      ],
+      "role": "noun",
+      "meaning": {
+        "in_context": "to a small café",
+        "dictionary": "small; café"
+      }
+    },
+    {
+      "text": "行きました",
+      "reading": [
+        {
+          "text": "行き",
+          "furi": "いき"
+        },
+        {
+          "text": "ました"
+        }
+      ],
+      "role": "verb",
+      "grammar": {
+        "dictionary_form": "行く",
+        "conjugation": "ます-form, past",
+        "explanation": "行く becomes 行きます in polite present/future form, and 行きました in the polite past.",
+        "implication": "Describes a completed action in the past."
+      }
+    },
+    {
+      "text": "。",
+      "reading": [
+        {
+          "text": "。"
+        }
+      ],
+      "role": "other"
+    },
+    {
+      "text": "コーヒーを飲みながら",
+      "reading": [
+        {
+          "text": "コーヒー"
+        },
+        {
+          "text": "を"
+        },
+        {
+          "text": "飲み",
+          "furi": "のみ"
+        },
+        {
+          "text": "ながら"
+        }
+      ],
+      "role": "grammar_phrase",
+      "grammar": {
+        "dictionary_form": "飲む",
+        "conjugation": "ます-stem + ながら",
+        "explanation": "The pattern verb stem + ながら means 'while doing something'.",
+        "implication": "Drinking coffee happened at the same time as the main action."
+      }
+    },
+    {
+      "text": "週末の予定について",
+      "reading": [
+        {
+          "text": "週末",
+          "furi": "しゅうまつ"
+        },
+        {
+          "text": "の"
+        },
+        {
+          "text": "予定",
+          "furi": "よてい"
+        },
+        {
+          "text": "について"
+        }
+      ],
+      "role": "grammar_phrase",
+      "meaning": {
+        "in_context": "about our plans for the weekend",
+        "dictionary": "about; concerning"
+      }
+    },
+    {
+      "text": "話しました",
+      "reading": [
+        {
+          "text": "話し",
+          "furi": "はなし"
+        },
+        {
+          "text": "ました"
+        }
+      ],
+      "role": "verb",
+      "grammar": {
+        "dictionary_form": "話す",
+        "conjugation": "ます-form, past",
+        "explanation": "話す becomes 話しました in polite past form.",
+        "implication": "Describes the completed conversation."
+      }
+    },
+    {
+      "text": "。",
+      "reading": [
+        {
+          "text": "。"
+        }
+      ],
+      "role": "other"
+    },
+    {
+      "text": "カフェは静かだったので",
+      "reading": [
+        {
+          "text": "カフェ"
+        },
+        {
+          "text": "は"
+        },
+        {
+          "text": "静か",
+          "furi": "しずか"
+        },
+        {
+          "text": "だった"
+        },
+        {
+          "text": "ので"
+        }
+      ],
+      "role": "grammar_phrase",
+      "grammar": {
+        "dictionary_form": "静かだ",
+        "conjugation": "plain past + ので",
+        "explanation": "The pattern ～ので expresses a reason or cause, meaning 'because' or 'since'.",
+        "implication": "The quietness of the café is presented as the reason for the following action."
+      }
+    },
+    {
+      "text": "ゆっくり話すことができました",
+      "reading": [
+        {
+          "text": "ゆっくり"
+        },
+        {
+          "text": "話す",
+          "furi": "はなす"
+        },
+        {
+          "text": "こと"
+        },
+        {
+          "text": "が"
+        },
+        {
+          "text": "できました"
+        }
+      ],
+      "role": "grammar_phrase",
+      "grammar": {
+        "dictionary_form": "できる",
+        "conjugation": "potential expression, polite past",
+        "explanation": "Verb dictionary form + ことができる expresses the ability or possibility to perform an action.",
+        "implication": "The speakers were able to have a relaxed conversation."
+      }
+    },
+    {
+      "text": "。",
+      "reading": [
+        {
+          "text": "。"
+        }
+      ],
+      "role": "other"
+    },
+    {
+      "text": "その後",
+      "reading": [
+        {
+          "text": "その"
+        },
+        {
+          "text": "後",
+          "furi": "あと"
+        }
+      ],
+      "role": "adverb",
+      "meaning": {
+        "in_context": "after that",
+        "dictionary": "after that; afterward"
+      }
+    },
+    {
+      "text": "、",
+      "reading": [
+        {
+          "text": "、"
+        }
+      ],
+      "role": "other"
+    },
+    {
+      "text": "天気が良かったので",
+      "reading": [
+        {
+          "text": "天気",
+          "furi": "てんき"
+        },
+        {
+          "text": "が"
+        },
+        {
+          "text": "良かった",
+          "furi": "よかった"
+        },
+        {
+          "text": "ので"
+        }
+      ],
+      "role": "grammar_phrase",
+      "grammar": {
+        "dictionary_form": "良い",
+        "conjugation": "i-adjective past + ので",
+        "explanation": "良い has the irregular past form 良かった. Adding ので expresses the reason for the following action.",
+        "implication": "The pleasant weather is given as the reason they walked home."
+      }
+    },
+    {
+      "text": "一緒に歩いて帰りました",
+      "reading": [
+        {
+          "text": "一緒",
+          "furi": "いっしょ"
+        },
+        {
+          "text": "に"
+        },
+        {
+          "text": "歩いて",
+          "furi": "あるいて"
+        },
+        {
+          "text": "帰り",
+          "furi": "かえり"
+        },
+        {
+          "text": "ました"
+        }
+      ],
+      "role": "verb",
+      "grammar": {
+        "dictionary_form": "歩く / 帰る",
+        "conjugation": "て-form + ます-form, past",
+        "explanation": "歩いて connects 歩く to 帰る, expressing the manner or accompanying action: 'walked home'.",
+        "implication": "They returned home on foot together."
+      }
+    },
+    {
+      "text": "。",
+      "reading": [
+        {
+          "text": "。"
+        }
+      ],
+      "role": "other"
+    }
+  ]
+}
